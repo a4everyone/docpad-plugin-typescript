@@ -1,0 +1,6 @@
+.travis*
+Makefile
+
+src/
+test/
+node_modules/
