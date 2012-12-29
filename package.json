@@ -28,13 +28,9 @@
     "docpad": "6.x"
   },
   "dependencies": {
-    "typescript": "0.8.x",
-    "typescript-require": "~0.1.6",
-    "typescript-wrapper": "~0.8.0"
-  },
-  "devDependencies": {
-    "typescript": "0.8.x",
-    "typescript-require": "~0.1.6"
+    "typescript": ">=0.8.1",
+    "require-for-typescript": "git://github.com/perpetual-motion/require-for-typescript.git",
+    "typescript-compiler": "git://github.com/perpetual-motion/typescript-compiler.git"
   },
   "main": "./lib/typescript.plugin.js",
   "scripts": {
