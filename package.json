@@ -29,11 +29,8 @@
   },
   "dependencies": {
     "typescript": ">=0.8.1",
-    "require-for-typescript": "git://github.com/perpetual-motion/require-for-typescript.git",
+    "docpad-tsplugin": "git://github.com/perpetual-motion/docpad-tsplugin.git",
     "typescript-compiler": "git://github.com/perpetual-motion/typescript-compiler.git"
   },
-  "main": "./lib/typescript.plugin.js",
-  "scripts": {
-    "test": "node ./lib/typescript.test.js"
-  }
+  "main": "./lib/plugin.js"
 }

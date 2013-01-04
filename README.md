@@ -8,6 +8,8 @@ Convention:  `.js.ts`
 
 ```
 npm install --save docpad-plugin-typescript
+
+npm install 
 ```
 
 
