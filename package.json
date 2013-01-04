@@ -30,7 +30,7 @@
   "dependencies": {
     "typescript": ">=0.8.1",
     "docpad-tsplugin": "git://github.com/perpetual-motion/docpad-tsplugin.git",
-    "typescript-compiler": "git://github.com/perpetual-motion/typescript-compiler.git"
+    "lax-typescript": "git://github.com/perpetual-motion/lax-typescript.git"
   },
   "main": "./lib/plugin.js"
 }
