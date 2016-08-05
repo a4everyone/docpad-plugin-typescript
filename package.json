@@ -23,5 +23,8 @@
   "devDependencies": {
     "typescript": ">=1.6",
   },
-  "main": "./out/plugin.js"
+  "main": "./out/plugin.js",
+  "scripts": {
+    "build": "tsc -p ./src --outDir ./out"
+  }
 }
