@@ -1,4 +1,6 @@
 
+declare let arguments: any[] 
+
 // Base plugin framework for DocPad plugins written in javascript.
 var __hasProp = {}.hasOwnProperty;
     
