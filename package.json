@@ -24,7 +24,7 @@
   "devDependencies": {
     "typescript": ">=1.6"
   },
-  "main": "./out/typescript.plugin.js",
+  "main": "./out/typescript-plugin.js",
   "scripts": {
     "postinstall": "typings-install && build",
     "build": "tsc -p ./lib",
