@@ -1,11 +1,15 @@
 var exportPlugin = require('./docpad-tsplugin');
-var compiler = require('lax-typescript');
 
-class TypescriptPlugin { 
+class TypescriptPlugin {
+    static __super__: any
+    public config: any 
+
     render(opts, next) : any {
         var config, inExtension, outExtension;
         config = this.config;
         
+        console.log(config)
+
         inExtension = opts.inExtension, outExtension = opts.outExtension;
         if ((inExtension === 'ts' ) && (outExtension === null || outExtension === 'js')) {
             // opts.content = compiler.compileToES3( opts.content, opts.file.attributes.fullPath );
@@ -15,8 +19,9 @@ class TypescriptPlugin {
         }
     }
     
-    constructor() {
-        return TypescriptPlugin.__super__.constructor.apply(this, arguments);
+    constructor(...params) {
+	    console.log('Instanciated')
+        return TypescriptPlugin.__super__.constructor.apply(this, params);
     }
 }
 
