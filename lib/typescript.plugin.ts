@@ -8,7 +8,7 @@ class TypescriptPlugin {
         
         inExtension = opts.inExtension, outExtension = opts.outExtension;
         if ((inExtension === 'ts' ) && (outExtension === null || outExtension === 'js')) {
-            opts.content = compiler.compileToES3( opts.content, opts.file.attributes.fullPath );
+            // opts.content = compiler.compileToES3( opts.content, opts.file.attributes.fullPath );
             return next();
         } else {
             return next();
