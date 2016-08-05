@@ -14,7 +14,7 @@
     "url": "http://github.com/a4everyone/docpad-plugin-typescript.git"
   },
   "engines": {
-    "node": ">=0.8.0",
+    "node": ">=4.5.0",
     "docpad": "6.x"
   },
   "dependencies": {
@@ -25,6 +25,6 @@
   },
   "main": "./out/typescript.plugin.js",
   "scripts": {
-    "build": "tsc -p ./lib --outDir ./out"
+    "build": "tsc -p ./lib"
   }
 }
