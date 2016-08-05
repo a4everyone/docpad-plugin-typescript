@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/perpetual-motion/docpad-plugin-typescript.git"
+    "url": "http://github.com/a4everyone/docpad-plugin-typescript.git"
   },
   "engines": {
     "node": ">=0.8.0",
@@ -29,8 +29,8 @@
   },
   "dependencies": {
     "typescript": ">=0.8.1",
-    "docpad-tsplugin": "git://github.com/perpetual-motion/docpad-tsplugin.git",
-    "lax-typescript": "git://github.com/perpetual-motion/lax-typescript.git"
+    "docpad-tsplugin": "git://github.com/a4everyone/docpad-tsplugin.git",
+    "lax-typescript": "git://github.com/a4everyone/lax-typescript.git"
   },
   "main": "./lib/plugin.js"
 }
