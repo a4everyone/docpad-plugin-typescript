@@ -26,6 +26,9 @@
   },
   "main": "./out/typescript.plugin.js",
   "scripts": {
-    "build": "tsc -p ./lib"
+    "postinstall": "typings-install && build",
+    "build": "tsc -p ./lib",
+    "typings": "typings",
+    "typings-install": "typings install"
   }
 }
