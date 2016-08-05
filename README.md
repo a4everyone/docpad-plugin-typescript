@@ -7,7 +7,7 @@ Convention:  `.js.ts`
 ## Install
 
 ```
-npm install --save docpad-plugin-typescript
+npm install --save git://github.com/a4everyone/docpad-plugin-typescript.git
 
 npm install 
 ```
