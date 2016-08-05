@@ -1,4 +1,4 @@
-var exportPlugin = require('docpad-tsplugin');
+var exportPlugin = require('./docpad-tsplugin');
 var compiler = require('lax-typescript');
 
 class TypescriptPlugin { 
