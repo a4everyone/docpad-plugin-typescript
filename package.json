@@ -16,9 +16,6 @@
   "contributors": [
     "Garrett Serack <gserack@gmail.com> (http://fearthecowboy.com)"
   ],
-  "bugs": {
-    "url": "https://github.com/perpetual-motion/docpad-plugin-typescript/issues"
-  },
   "repository": {
     "type": "git",
     "url": "http://github.com/a4everyone/docpad-plugin-typescript.git"
