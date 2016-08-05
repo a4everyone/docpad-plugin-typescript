@@ -25,6 +25,6 @@
   },
   "main": "./out/plugin.js",
   "scripts": {
-    "build": "tsc -p ./src --outDir ./out"
+    "build": "tsc -p ./lib --outDir ./out"
   }
 }
