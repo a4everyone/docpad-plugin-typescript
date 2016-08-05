@@ -1,21 +1,14 @@
 {
   "name": "docpad-plugin-typescript",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Adds support for TypeScript to JavaScript compilation to DocPad",
-  "homepage": "http://docpad.org/plugin/typescript",
   "keywords": [
     "docpad",
     "docpad-plugin",
     "typescript",
-    "type-script"
+    "tsc"
   ],
-  "author": "Garrett Serack <gserack@gmail.com> (http://fearthecowboy.com)",
-  "maintainers": [
-    "Garrett Serack <gserack@gmail.com> (http://fearthecowboy.com)"
-  ],
-  "contributors": [
-    "Garrett Serack <gserack@gmail.com> (http://fearthecowboy.com)"
-  ],
+  "author": "Todor Kisov <todor.kisov@a4everyone.com> (http://a4everyone.com)",
   "repository": {
     "type": "git",
     "url": "http://github.com/a4everyone/docpad-plugin-typescript.git"
@@ -25,9 +18,10 @@
     "docpad": "6.x"
   },
   "dependencies": {
-    "typescript": ">=0.8.1",
-    "docpad-tsplugin": "git://github.com/a4everyone/docpad-tsplugin.git",
-    "lax-typescript": "git://github.com/a4everyone/lax-typescript.git"
+    "typescript": ">=1.6",
   },
-  "main": "./lib/plugin.js"
+  "devDependencies": {
+    "typescript": ">=1.6",
+  },
+  "main": "./out/plugin.js"
 }
