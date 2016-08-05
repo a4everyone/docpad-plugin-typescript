@@ -26,7 +26,7 @@
   },
   "main": "./out/typescript-plugin.js",
   "scripts": {
-    "postinstall2": "typings install && npm run build",
+    "postinstall": "cd lib/ && typings install && npm run build",
     "build": "tsc -p ./lib"
   }
 }
