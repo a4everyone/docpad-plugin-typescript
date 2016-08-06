@@ -18,7 +18,7 @@ class TypescriptPlugin {
 
     render(opts, next) : any {
         var config, inExtension, outExtension;
-        config = this.getTsConfig();
+        config = this.getPluginConfig();
         
         console.log(config)
 
@@ -35,7 +35,7 @@ class TypescriptPlugin {
      * extendCollection() is used to exclude from rendering files that have extension .ts but are not .js.ts files 
      */
     extendCollections(...opt) {
-        let config = this.getTsConfig()
+        let config = this.getPluginConfig()
         let docpad = this.docpad
 
         console.log('----------------------------------------------------------------------------------------------------')
@@ -59,6 +59,21 @@ class TypescriptPlugin {
         }
     }
 
+    /**
+     * Executed after each change of Docpad's configuration a.k. docpad.coffee file
+     * Used to validate plugin configuration
+     */
+    docpadLoaded(opts, next) {
+        let config = this.getPluginConfig()
+        try { 
+            this.validateConfig(config)
+            
+            return next()
+        } catch(err) {
+            return next(err)
+        }
+    }
+
     constructor(...params) {
 	    TypescriptPlugin
 
@@ -69,10 +84,21 @@ class TypescriptPlugin {
     /**
      * Docpad has put the proper environment configuration only environments key muest be removed
      */
-    getTsConfig() {
+    private getPluginConfig() {
         let config = this.getConfig()
         delete config.environments
+
         return config
+    }
+
+    private validateConfig(config: DocpadTypescriptOptions) {
+        let forbiddenKeys = ['out', 'outFile', 'outDir', 'mapRoot', 'rootDir', 'sourceRoot', 'watch']
+        
+
+        for(let key in config) {
+            if( forbiddenKeys.indexOf(key) >= 0 )
+                throw "The Docpad's 'typescript' plugin is configured with forbidden option: " + key
+        }
     }
 }
 
