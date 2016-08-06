@@ -9,6 +9,8 @@ Convention:
 > **NOTE:** Doesnt't process files that end with '.ts' or '.d.ts'.<br/>
 > If in the configuration is specified `sourceMap: true` all '.ts' files are rendered to `out` to support source maps debugging.
 
+The plugin is solely based on TypeScript's native suport for [NodeJS](https://nodejs.org/) with [Typescript Compile API](https://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API)
+
 ## Install
 
 ```
