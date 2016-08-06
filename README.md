@@ -1,8 +1,13 @@
 # TypeScript Plugin for DocPad
 Adds support for [TypeScript](http://Typescriptlang.org/) to JavaScript compilation to [DocPad](https://docpad.org)
 
-Convention:  `.js.ts` only files with that extension
-Doesnt't process files that end with '.ts' or '.d.ts'. If env=default all '.ts' files are copied as they are to support source maps.
+Convention:
+  * Processes only files with extension `.js.ts`
+  * Support source maps
+  * Tripple slash reference like /// &lt;reference path="..."&gt; are included as part of the file
+
+> **NOTE:** Doesnt't process files that end with '.ts' or '.d.ts'.<br/>
+> If in the configuration is specified `sourceMap: true` all '.ts' files are rendered to `out` to support source maps debugging.
 
 ## Install
 
@@ -42,7 +47,7 @@ plugins:
 ```
 
 > **WARNING**
-> Don't use `tsc` options: out, outFile, outDir
+> Don't use `tsc` options: out, outFile, outDir, mapRoot, rootDir, sourceRoot, watch
 
 ## History
 You can discover the history inside the [History.md](/History.md) file
