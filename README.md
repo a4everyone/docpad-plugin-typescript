@@ -1,5 +1,5 @@
 # TypeScript Plugin for DocPad
-Adds support for [TypeScript](http://Typescriptlang.org/) to JavaScript compilation to [DocPad](https://docpad.org)
+Adds support for [TypeScript](http://Typescriptlang.org/) to JavaScript compilation/transpile to [DocPad](https://docpad.org)
 
 Convention:
   * Processes only files with extension `.js.ts`
