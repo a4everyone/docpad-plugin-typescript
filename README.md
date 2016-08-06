@@ -4,7 +4,7 @@ Adds support for [TypeScript](http://Typescriptlang.org/) to JavaScript compilat
 Convention:
   * Processes only files with extension `.js.ts`
   * Support source maps
-  * Tripple slash reference like `/// &lt;reference path="..."&gt;` are included as part of the file
+  * Tripple slash reference like `/// <reference path="...">` are included as part of the file
 
 > **NOTE:** Doesnt't process files that end with `.ts` or `.d.ts`.<br/>
 > If in the configuration is specified `sourceMap: true` all `.ts` files are rendered to `out` to support source maps debugging.
