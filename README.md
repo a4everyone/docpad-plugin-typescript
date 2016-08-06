@@ -4,12 +4,12 @@ Adds support for [TypeScript](http://Typescriptlang.org/) to JavaScript compilat
 Convention:
   * Processes only files with extension `.js.ts`
   * Support source maps
-  * Tripple slash reference like /// &lt;reference path="..."&gt; are included as part of the file
+  * Tripple slash reference like `/// &lt;reference path="..."&gt;` are included as part of the file
 
-> **NOTE:** Doesnt't process files that end with '.ts' or '.d.ts'.<br/>
-> If in the configuration is specified `sourceMap: true` all '.ts' files are rendered to `out` to support source maps debugging.
+> **NOTE:** Doesnt't process files that end with `.ts` or `.d.ts`.<br/>
+> If in the configuration is specified `sourceMap: true` all `.ts` files are rendered to `out` to support source maps debugging.
 
-The plugin is solely based on TypeScript's native suport for [NodeJS](https://nodejs.org/) with [Typescript Compile API](https://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API)
+The plugin is solely based on TypeScript's native suport for [NodeJS](https://nodejs.org/) with [Typescript Compiler API](https://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API)
 
 ## Install
 
