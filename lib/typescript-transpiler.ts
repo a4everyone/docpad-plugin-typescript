@@ -1,6 +1,8 @@
 import * as fs from "fs"
 import * as ts from "typescript"
 
+export interface CompilerOptions extends ts.CompilerOptions {}
+
 export interface RootFile4Transpile {
     name: string
     content: string
