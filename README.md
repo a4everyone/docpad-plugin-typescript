@@ -11,8 +11,41 @@ npm install --save git://github.com/a4everyone/docpad-plugin-typescript.git
 
 ```
 
+## Configure
+
+### Defaults
+
+The default configuration for this plugin is the equivalent of default options of [TypeScript](http://Typescriptlang.org/)'s **tsconfig.json** options to your [DocPad configuration file](http://docpad.org/docs/config):
+
+1. Simple form. May be used almost any option for [tsconfig.json](https://www.typescriptlang.org/docs/handbook/compiler-options.html)
+
+``` coffee
+plugins:
+  typescript:
+    target: 'es3'
+    sourceMap: true
+```
+
+2. Environments specific options. Same as simple options but for each Docpad's enviorment. (environments development is the default) :
+
+``` coffee
+plugins:
+	typescript:
+		# Disable source maps on the development environment.
+		environments:
+			development:
+				target: 'es3'
+				sourceMap: true
+			prod:
+				target: 'es3'
+				sourceMap: false			
+```
+
+> **WARNING**
+> Don't use `tsc` options: out, outFile, outDir
+
 ## History
-You can discover the history inside the `History.md` file
+You can discover the history inside the [History.md](/History.md) file
 
 
 ## License
