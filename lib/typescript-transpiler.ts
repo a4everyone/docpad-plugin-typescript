@@ -1,13 +1,27 @@
 import * as fs from "fs"
 import * as ts from "typescript"
 
-export interface CompilerOptions extends ts.CompilerOptions {}
+export { CompilerOptions, OutputFile } from "typescript"
 
+/**
+ * Interface to pass to transpiler root files to be compiled/transpiled
+ */
 export interface RootFile4Transpile {
     name: string
     content: string
 }
 
+/**
+ * Wrapper for the write
+ */
+export function writeFile(file: ts.OutputFile) {
+    fs.writeFile(file.name, file.text, "utf8")
+}
+
+/**
+ * Transpiles Typescript to JavaScript
+ * Uses Typescript's native support of NodeJS
+ */
 export class TypescriptTranspiler
 {
     private servicesHost: ts.LanguageServiceHost
@@ -43,16 +57,22 @@ export class TypescriptTranspiler
         this.service = ts.createLanguageService(this.servicesHost, ts.createDocumentRegistry())
     }
 
-    transpile(rootFile: RootFile4Transpile[])
+    transpile(rootFile: RootFile4Transpile[]): ts.OutputFile[]
     {
         // set correct file names to be processed
         this.rootFiles = rootFile
 
+        let resultFiles: ts.OutputFile[] = []
+
         // Now let's watch the files
         rootFile.forEach(file => {
             // First time around, emit all files
-            this.emitFile(file.name)
+            let outFiles = this.emitFile(file.name)
+            
+            resultFiles = resultFiles.concat(outFiles)
         })
+
+        return resultFiles
     }
 
     private getContentIfRootFile(fileName: string): string
@@ -71,11 +91,11 @@ export class TypescriptTranspiler
         if (output.emitSkipped)
             this.logErrors(fileName)
         
+        // output.outputFiles.forEach(o => {
+        //     writeFile(o.name, o.text)
+        // })
 
-        output.outputFiles.forEach(o => {
-            console.log(o)
-            // fs.writeFileSync(o.name, o.text, "utf8")
-        })
+        return output.outputFiles
     }
 
     private logErrors(fileName: string) {
