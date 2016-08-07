@@ -11,6 +11,8 @@ Convention:
 
 The plugin is solely based on TypeScript's native suport for [NodeJS](https://nodejs.org/) with [Typescript Compiler API](https://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API)
 
+> **NOTE:** Use UTF-8 encoding for your `.ts` files
+
 ## Install
 
 ```
