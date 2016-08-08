@@ -11,7 +11,10 @@ Convention:
 
 The plugin is solely based on TypeScript's native suport for [NodeJS](https://nodejs.org/) with [Typescript Compiler API](https://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API)
 
-> **NOTE:** Use UTF-8 encoding for your `.ts` files
+> **RESTRICTIONS:**
+> * Use UTF-8 encoding for your `.ts` files
+> * Use small caps extensions
+> * The piped extension .js.ts must be last. No extra piped extensions/convertions allowed at that version.
 
 ## Install
 
