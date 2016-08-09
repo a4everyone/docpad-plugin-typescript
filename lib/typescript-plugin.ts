@@ -17,62 +17,65 @@ class TypescriptPlugin {
     private excludedStylesheets: any
     private transpilerSet: TranspilerSet
     private isSourceMap: boolean = false
+    private outFiles: OutputFile[] = []
 
     private matchJsEndOfFile = /\.js$/
     private matchJsTsEndOfFile = /\.js\.ts$/
     private matchNoJsOnlyTsEndOfFile = /^.*?[^\.][^j][^s]\.ts$/
 
-    render(opts, next) : any {
+    render(opts, next): any {
+        if ( opts.inExtension !== 'ts' || opts.outExtension !== 'js' )
+        {
+            next()
+            return
+        }
+
         let config = this.getPluginConfig()
 
-        if ( opts.inExtension === 'ts'  && opts.outExtension === 'js' )
-        {
-            try {
-                // to make correct placemnet of output files
-                // config.outDir = this.docpad.config.outPath
-                // set outFile for correct path and more important to combine all tripple slash references in one file
-                config.outFile = opts.file.attributes.outPath
+        try {
+            // to make correct placemnet of output files
+            // config.outDir = this.docpad.config.outPath
+            // set outFile for correct path and more important to combine all tripple slash references in one file
+            config.outFile = opts.file.attributes.outPath
 
-                // It is very important that file name to be specified by full path to work correctly detection of the
-                // working directory and correct transpiler instance
-                let fullPathFileName: string = opts.file.attributes.fullPath
-                let mtime: number = opts.file.attributes.mtime.getTime() 
-                // fix output file names (like maps) by removing .js.ts from the name
-                fullPathFileName = fullPathFileName.replace(this.matchJsTsEndOfFile, '.ts')
+            // It is very important that file name to be specified by full path to work correctly detection of the
+            // working directory and correct transpiler instance
+            let fullPathFileName: string = opts.file.attributes.fullPath
+            let mtime: number = opts.file.attributes.mtime.getTime() 
+            // fix output file names (like maps) by removing .js.ts from the name
+            fullPathFileName = fullPathFileName.replace(this.matchJsTsEndOfFile, '.ts')
 
-                let srcContent = opts.content
+            let srcContent = opts.content
 
-                let rootFile: RootFile4Transpile = { 
-                        name: fullPathFileName,
-                        content: srcContent,
-                        mtime: mtime
-                     }
-                let outFiles = this.transpilerSet.transpile( rootFile )
+            let rootFile: RootFile4Transpile = { 
+                    name: fullPathFileName,
+                    content: srcContent,
+                    mtime: mtime
+                    }
+            let outFiles = this.transpilerSet.transpile( rootFile )
 
-                let jsFileInd = this.getJsFileIndex(outFiles)
+            let jsFileInd = this.getJsFileIndex(outFiles)
 
-                // chnage Docpad document content to transpiled file text
-                let jsFile = outFiles[jsFileInd]
-                opts.content = jsFile.text
+            // chnage Docpad document content to transpiled file text
+            let jsFile = outFiles[jsFileInd]
+            opts.content = jsFile.text
 
-                outFiles.splice(jsFileInd, 1)
+            outFiles.splice(jsFileInd, 1)
 
-                // add this file as .ts file
-                if( this.isSourceMap )
-                    outFiles.push({
-                            name: config.outFile.replace(this.matchJsEndOfFile, '.ts'),
-                            writeByteOrderMark: jsFile.writeByteOrderMark, // use same as one of the JS file
-                            text: srcContent
-                        })
+            // add this file as .ts file
+            if( this.isSourceMap )
+                outFiles.push({
+                        name: config.outFile.replace(this.matchJsEndOfFile, '.ts'),
+                        writeByteOrderMark: jsFile.writeByteOrderMark, // use same as one of the JS file
+                        text: srcContent
+                    })
 
-                this.writeComplementaryFiles(outFiles)
-                
-                return next()
-            } catch(err) {
-                return next(err)
-            }
-        } else {
+            // outFiles are going to be written on disk when directory structure is fully created
+            this.outFiles.push(...outFiles)
+            
             return next()
+        } catch(err) {
+            return next(err)
         }
     }
     
@@ -129,13 +132,21 @@ class TypescriptPlugin {
         }
     }
 
+    /**
+     * Called by Docpad just after wrote all the files 
+     */
+    writeAfter() {
+        this.writeComplementaryFiles()
+    }
+
     constructor(...params) {
         return TypescriptPlugin.__super__.constructor.apply(this, params)
     }
 
-    private writeComplementaryFiles(files: OutputFile[])
+    private writeComplementaryFiles()
     {
-        files.forEach( file => writeFile(file) )
+        this.outFiles.forEach( file => writeFile(file) )
+        this.outFiles = []
     }
 
     private getJsFileIndex(files: OutputFile[]): number
