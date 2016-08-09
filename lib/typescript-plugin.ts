@@ -36,6 +36,7 @@ class TypescriptPlugin {
                 // It is very important that file name to be specified by full path to work correctly detection of the
                 // working directory and correct transpiler instance
                 let fullPathFileName: string = opts.file.attributes.fullPath
+                let mtime: number = opts.file.attributes.mtime.getTime() 
                 // fix output file names (like maps) by removing .js.ts from the name
                 fullPathFileName = fullPathFileName.replace(this.matchJsTsEndOfFile, '.ts')
 
@@ -43,7 +44,8 @@ class TypescriptPlugin {
 
                 let rootFile: RootFile4Transpile = { 
                         name: fullPathFileName,
-                        content: srcContent
+                        content: srcContent,
+                        mtime: mtime
                      }
                 let outFiles = this.transpilerSet.transpile( rootFile )
 
@@ -80,23 +82,29 @@ class TypescriptPlugin {
     extendCollections(...opt) {
         let config = this.getPluginConfig()
 
-        this.isSourceMap = ( config.inlineSourceMap === true || config.sourceMap === true ) 
+        let extendedCollection: any[] = []
+
+        extendedCollection.push(
+            this.docpad.getDatabase().findAllLive({filename: /\.js\.ts$/})
+                .on('add', (document) => document.setMetaDefaults({referencesOthers:true, uglify: true})) // uglify is becuase docpad-plugin-uglify
+        )
 
         /*
          * If there is no source map spceified then no need to render *.ts files to Docpad's 'out' folder
          */
+        this.isSourceMap = ( config.inlineSourceMap === true || config.sourceMap === true )
+
         if( ! this.isSourceMap ) {
             this.excludedStylesheets = this.docpad.getDatabase().findAllLive({
                 filename: this.matchNoJsOnlyTsEndOfFile  // all files ending with .ts but not those ending with .js.ts 
             })
 
-            return this.excludedStylesheets.on('add', function(model) {
-                return model.set({
-                    render: false,
-                    write: false
-                })
-            })
+            extendedCollection.push(
+                this.excludedStylesheets.on('add', (model) => model.set({ render: false, write: false }) )
+            )
         }
+
+        return extendedCollection
     }
 
     /**
@@ -113,7 +121,7 @@ class TypescriptPlugin {
             // always returns full path to root
 
             // init transpaler service based on configuration
-             this.transpilerSet = new TranspilerSet(this.docpad.config.documentsPaths, config)            
+            this.transpilerSet = new TranspilerSet(this.docpad.config.documentsPaths, config)            
 
             return next()
         } catch(err) {
@@ -135,7 +143,7 @@ class TypescriptPlugin {
         for(let ind=0; ind < files.length; ind++)
         {
             let file = files[ind]
-            if( file.name.match(this.matchJsEndOfFile) )
+            if( this.matchJsEndOfFile.test(file.name) )
                 return ind
         }
 
