@@ -9,13 +9,13 @@ Convention:
 
 > **NOTE:** 
 > * Doesn't renders to `out` dir files that end with `.ts` or `.d.ts`. These may be used to be 'included'/referenced in `.js.ts` files
-> * If in the configuration is specified `sourceMap: true` all `.ts` files are rendered to `out` to support source maps debugging
+> * If in the configuration is specified `sourceMap: true` all `.ts` files are copied to `out` to support source maps debugging
 > * If Docpad has installed `docpad-plugin-uglify` this plugin is going to add automatically meta data propert `uglify: true` to all `.js.ts` files
 
 
 > **RESTRICTIONS:**
 > * Use UTF-8 encoding for your `.ts` files
-> * Use small caps extensions
+> * Use small caps/lowercase extensions
 > * The piped extension .js.ts must be last. No extra piped extensions/convertions allowed at that version.
 
 ## Install
