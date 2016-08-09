@@ -1,17 +1,17 @@
 # TypeScript Plugin for DocPad
-Adds support for [TypeScript](http://Typescriptlang.org/) to JavaScript compilation/transpile to [DocPad](https://docpad.org)
+Adds support for [TypeScript](http://Typescriptlang.org/) to JavaScript compilation/transpile to [DocPad](https://docpad.org)  
+The plugin is solely based on TypeScript's native suport for [NodeJS](https://nodejs.org/) with [Typescript Compiler API](https://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API)
 
 Convention:
-  * Processes only files with extension `.js.ts`
+  * Renders to Docpad's `out` dir only files with extension `.js.ts`
   * Support source maps
   * Tripple slash reference like `/// <reference path="...">` are included as part of the file
 
 > **NOTE:** 
-> * Doesnt't process files that end with `.ts` or `.d.ts`
+> * Doesn't renders to `out` dir files that end with `.ts` or `.d.ts`. These may be used to be 'included'/referenced in `.js.ts` files
 > * If in the configuration is specified `sourceMap: true` all `.ts` files are rendered to `out` to support source maps debugging
 > * If Docpad has installed `docpad-plugin-uglify` this plugin is going to add automatically meta data propert `uglify: true` to all `.js.ts` files
 
-The plugin is solely based on TypeScript's native suport for [NodeJS](https://nodejs.org/) with [Typescript Compiler API](https://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API)
 
 > **RESTRICTIONS:**
 > * Use UTF-8 encoding for your `.ts` files
