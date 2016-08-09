@@ -6,8 +6,10 @@ Convention:
   * Support source maps
   * Tripple slash reference like `/// <reference path="...">` are included as part of the file
 
-> **NOTE:** Doesnt't process files that end with `.ts` or `.d.ts`.<br/>
-> If in the configuration is specified `sourceMap: true` all `.ts` files are rendered to `out` to support source maps debugging.
+> **NOTE:** 
+> * Doesnt't process files that end with `.ts` or `.d.ts`
+> * If in the configuration is specified `sourceMap: true` all `.ts` files are rendered to `out` to support source maps debugging
+> * If Docpad has installed `docpad-plugin-uglify` this plugin is going to add automatically meta data propert `uglify: true` to all `.js.ts` files
 
 The plugin is solely based on TypeScript's native suport for [NodeJS](https://nodejs.org/) with [Typescript Compiler API](https://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API)
 
