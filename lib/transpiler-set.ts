@@ -1,4 +1,6 @@
 import { TypescriptTranspiler, CompilerOptions, RootFile4Transpile, OutputFile } from "./typescript-transpiler"
+import * as path from "path"
+
 export { CompilerOptions, RootFile4Transpile, OutputFile, writeFile } from "./typescript-transpiler"
 
 /**
@@ -31,8 +33,9 @@ export class TranspilerSet {
             // if has the same root as the root dir of cur transpiler
             if( file.name.indexOf( trInstane.rootWorkingDir ) === 0 )
             {
-                // to make Typescript transpiler to output to correct source maps paths
-                this.compilerOptions.mapRoot = trInstane.rootWorkingDir
+                // to make Typescript transpiler to output to correct source maps paths especialy in .js.map files
+                // the 'sources' map property
+                this.compilerOptions.mapRoot = path.dirname( file.name )
 
                 return trInstane.transpiler.transpile( [ file ] )
             }
