@@ -11,6 +11,11 @@ Convention:
 > * Doesn't renders to `out` dir files that end with `.ts` or `.d.ts`. These may be used to be 'included'/referenced in `.js.ts` files
 > * If in the configuration is specified `sourceMap: true` all `.ts` files are copied to `out` to support source maps debugging
 > * If Docpad has installed `docpad-plugin-uglify` this plugin is going to add automatically meta data propert `uglify: true` to all `.js.ts` files
+> * Don't forget to add to add something like
+> ``` coffee
+> ignoreCustomPatterns: /typings\.json$|\/typings\/|^typings\//
+> ```
+> to your `docpad.coffee`
 
 
 > **RESTRICTIONS:**
