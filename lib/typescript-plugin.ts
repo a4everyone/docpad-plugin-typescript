@@ -21,7 +21,8 @@ class TypescriptPlugin {
 
     private matchJsEndOfFile = /\.js$/
     private matchJsTsEndOfFile = /\.js\.ts$/
-    private matchNoJsOnlyTsEndOfFile = /^.*?[^\.][^j][^s]\.ts$/
+    // next line is equivalent of RegEx negative lookbehind like /^.*(?<!\.js)\.ts$/
+    private matchNoJsOnlyTsEndOfFile = /^(?!.*\.js\.ts$).*\.ts$/
 
     render(opts, next): any {
         if ( opts.inExtension !== 'ts' || opts.outExtension !== 'js' )
