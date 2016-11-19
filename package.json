@@ -1,5 +1,6 @@
 {
   "name": "docpad-plugin-typescript",
+  "private": true,
   "version": "2.0.0",
   "description": "Adds support for TypeScript to JavaScript compilation to DocPad",
   "keywords": [
