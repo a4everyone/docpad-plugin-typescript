@@ -16,7 +16,7 @@ export interface RootFile4Transpile {
  * Wrapper for the write
  */
 export function writeFile(file: ts.OutputFile) {
-    fs.writeFile(file.name, file.text, "utf8")
+    fs.writeFile(file.name, file.text, {encoding: "utf8"})
 }
 
 /**
